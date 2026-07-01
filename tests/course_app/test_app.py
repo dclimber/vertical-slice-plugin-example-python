@@ -58,3 +58,9 @@ def test_course_app_exposes_enrolment_workflow_methods() -> None:
 def test_old_example_modules_are_not_part_of_the_public_repo() -> None:
     assert not (ROOT / "src/examples").exists()
     assert not (ROOT / "dcb_enrolment_with_vertical_slices").exists()
+
+
+def test_domain_area_shim_packages_are_not_part_of_the_public_repo() -> None:
+    assert not (ROOT / "vertical_slices/student_slice").exists()
+    assert not (ROOT / "vertical_slices/course_slice").exists()
+    assert not (ROOT / "vertical_slices/enrolment_slice").exists()

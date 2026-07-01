@@ -35,10 +35,6 @@ docs/features                        Gherkin flow specs
 tests                                contract, architecture, BDD, and composition tests
 ```
 
-The `student_slice`, `course_slice`, and `enrolment_slice` packages are
-domain-area import shims. They re-export canonical classes from the slice
-packages so the domain can still be browsed at a higher level.
-
 ## Composition
 
 `src/course_app/use_cases.py` registers canonical events and composes use cases

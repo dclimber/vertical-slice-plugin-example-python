@@ -47,7 +47,3 @@ example.
 
 BDD features describe flows and use cases. They prove the composition without
 turning feature files into slice packages.
-
-Domain-area import shims remain for browsing related student, course, and
-enrolment concepts together. The production composition uses the canonical
-event, state-change, and state-view packages directly.

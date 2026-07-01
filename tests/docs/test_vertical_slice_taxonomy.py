@@ -5,12 +5,12 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 
 
-def test_docs_describe_domain_area_import_shims() -> None:
+def test_docs_describe_the_current_public_shape() -> None:
     readme = (ROOT / "README.md").read_text()
     architecture = (ROOT / "plugin-architecture.md").read_text()
 
-    assert "domain-area import shims" in readme
-    assert "Domain-area import shims" in architecture
+    assert "explicit composition root" in readme
+    assert "composition root" in architecture
     assert "vertical slice packages" not in architecture
     assert "package-level vertical slices" not in architecture
 
@@ -71,6 +71,20 @@ def test_docs_do_not_reference_removed_example_modules() -> None:
         "dcb_enrolment_with_vertical_slices",
         "EnrolmentWithVerticalSlices",
         "src/examples",
+    ):
+        assert phrase not in readme
+        assert phrase not in architecture
+
+
+def test_docs_do_not_describe_removed_domain_area_shim_packages() -> None:
+    readme = (ROOT / "README.md").read_text()
+    architecture = (ROOT / "plugin-architecture.md").read_text()
+
+    for phrase in (
+        "student_slice",
+        "course_slice",
+        "enrolment_slice",
+        "domain-area import shims",
     ):
         assert phrase not in readme
         assert phrase not in architecture

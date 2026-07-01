@@ -43,9 +43,6 @@ pythonpath = [
     "vertical_slices/state-views/course_names",
     "vertical_slices/state-views/student_summary",
     "vertical_slices/state-views/course_summary",
-    "vertical_slices/student_slice",
-    "vertical_slices/course_slice",
-    "vertical_slices/enrolment_slice",
 ]
 testpaths = ["tests"]
 
@@ -70,9 +67,6 @@ src = [
     "vertical_slices/state-views/course_names",
     "vertical_slices/state-views/student_summary",
     "vertical_slices/state-views/course_summary",
-    "vertical_slices/student_slice",
-    "vertical_slices/course_slice",
-    "vertical_slices/enrolment_slice",
 ]
 
 [tool.uv.sources]
@@ -93,6 +87,3 @@ course-ids-for-student = { path = "vertical_slices/state-views/course_ids_for_st
 course-names = { path = "vertical_slices/state-views/course_names", editable = true }
 student-summary = { path = "vertical_slices/state-views/student_summary", editable = true }
 course-summary = { path = "vertical_slices/state-views/course_summary", editable = true }
-student-slice = { path = "vertical_slices/student_slice", editable = true }
-course-slice = { path = "vertical_slices/course_slice", editable = true }
-enrolment-slice = { path = "vertical_slices/enrolment_slice", editable = true }

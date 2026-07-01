@@ -1,21 +1,9 @@
 from __future__ import annotations
 
 import ast
-import importlib
 from pathlib import Path
 
-from course_slice import events as course_events
-from enrolment_slice import events as enrolment_events
-from student_slice import events as student_events
-
 ROOT = Path(__file__).resolve().parents[2]
-
-BROAD_DOMAIN_PACKAGE_FILES = (
-    ROOT / "vertical_slices/student_slice/student_slice/slices.py",
-    ROOT / "vertical_slices/course_slice/course_slice/slices.py",
-    ROOT / "vertical_slices/enrolment_slice/enrolment_slice/slices.py",
-    ROOT / "vertical_slices/enrolment_slice/enrolment_slice/queries.py",
-)
 
 STATE_CHANGE_AND_VIEW_FILES = tuple(
     sorted(
@@ -86,50 +74,6 @@ def test_durable_classes_are_defined_once_in_their_canonical_modules() -> None:
     } == {
         name: [path] for name, path in EXPECTED_CLASS_LOCATIONS.items()
     }
-
-
-def test_event_compatibility_modules_re_export_canonical_event_objects() -> None:
-    canonical_student_events = importlib.import_module("student_events.events")
-    courses_events = importlib.import_module("courses_events.events")
-    enrollment_events = importlib.import_module("enrollment_events.events")
-
-    assert canonical_student_events.StudentRegistered is student_events.StudentRegistered
-    assert canonical_student_events.StudentNameUpdated is student_events.StudentNameUpdated
-    assert (
-        canonical_student_events.StudentMaxCoursesUpdated
-        is student_events.StudentMaxCoursesUpdated
-    )
-    assert courses_events.CourseRegistered is course_events.CourseRegistered
-    assert courses_events.CourseNameUpdated is course_events.CourseNameUpdated
-    assert courses_events.CoursePlacesUpdated is course_events.CoursePlacesUpdated
-    assert enrollment_events.StudentJoinedCourse is enrolment_events.StudentJoinedCourse
-    assert enrollment_events.StudentLeftCourse is enrolment_events.StudentLeftCourse
-
-
-def test_broad_domain_packages_do_not_define_command_or_query_slice_classes() -> None:
-    forbidden_class_names = {
-        "RegisterStudent",
-        "UpdateStudentName",
-        "UpdateMaxCourses",
-        "RegisterCourse",
-        "UpdateCourseName",
-        "UpdateCoursePlaces",
-        "StudentJoinsCourse",
-        "StudentLeavesCourse",
-        "StudentIDsForCourse",
-        "StudentNames",
-        "CourseIDsForStudent",
-        "CourseNames",
-        "Student",
-        "Course",
-    }
-
-    for path in BROAD_DOMAIN_PACKAGE_FILES:
-        module = ast.parse(path.read_text())
-        class_names = {
-            node.name for node in ast.walk(module) if isinstance(node, ast.ClassDef)
-        }
-        assert forbidden_class_names.isdisjoint(class_names), path
 
 
 def test_state_change_and_state_view_packages_do_not_define_durable_event_classes() -> None:
