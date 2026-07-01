@@ -3,7 +3,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 
 from eventsourcing.dcb.domain import Selector
-from examples.dcb_enrolment.interface import StudentID
+from student_events.events import StudentID
 from student_slice.events import (
     StudentMaxCoursesUpdated,
     StudentNameUpdated,

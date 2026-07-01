@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from eventsourcing.dcb.domain import Selector, Slice
 from eventsourcing.domain import event
-from examples.dcb_enrolment.interface import StudentID
+from student_events.events import StudentID
 from student_events.events import StudentNameUpdated, StudentRegistered
 
 

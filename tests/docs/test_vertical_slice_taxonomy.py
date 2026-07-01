@@ -5,12 +5,12 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 
 
-def test_docs_describe_compatibility_import_surfaces() -> None:
+def test_docs_describe_domain_area_import_shims() -> None:
     readme = (ROOT / "README.md").read_text()
     architecture = (ROOT / "plugin-architecture.md").read_text()
 
-    assert "compatibility import surfaces" in readme
-    assert "Compatibility import surfaces" in architecture
+    assert "domain-area import shims" in readme
+    assert "Domain-area import shims" in architecture
     assert "vertical slice packages" not in architecture
     assert "package-level vertical slices" not in architecture
 
@@ -59,5 +59,18 @@ def test_docs_do_not_present_broad_domain_packages_as_the_final_shape() -> None:
     )
 
     for phrase in forbidden_phrases:
+        assert phrase not in readme
+        assert phrase not in architecture
+
+
+def test_docs_do_not_reference_removed_example_modules() -> None:
+    readme = (ROOT / "README.md").read_text()
+    architecture = (ROOT / "plugin-architecture.md").read_text()
+
+    for phrase in (
+        "dcb_enrolment_with_vertical_slices",
+        "EnrolmentWithVerticalSlices",
+        "src/examples",
+    ):
         assert phrase not in readme
         assert phrase not in architecture

@@ -3,10 +3,11 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 
 from course_slice.events import CourseNameUpdated, CoursePlacesUpdated, CourseRegistered
+from courses_events.events import CourseID
 from enrolment_slice.events import StudentJoinedCourse, StudentLeftCourse
 from enrolment_slice.plugin import enrolment_slice
 from enrolment_slice.slices import StudentJoinsCourse, StudentLeavesCourse
-from examples.dcb_enrolment.interface import CourseID, StudentID
+from student_events.events import StudentID
 from student_slice.events import (
     StudentMaxCoursesUpdated,
     StudentNameUpdated,

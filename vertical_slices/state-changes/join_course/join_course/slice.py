@@ -1,16 +1,16 @@
 from __future__ import annotations
 
 from courses_events.events import CourseID, CoursePlacesUpdated, CourseRegistered
-from enrollment_events.events import StudentJoinedCourse, StudentLeftCourse
-from eventsourcing.dcb.domain import Selector, Slice
-from eventsourcing.domain import event
-from examples.dcb_enrolment.interface import (
+from enrollment_events.errors import (
     AlreadyJoinedError,
     CourseNotFoundError,
     FullyBookedError,
     StudentNotFoundError,
     TooManyCoursesError,
 )
+from enrollment_events.events import StudentJoinedCourse, StudentLeftCourse
+from eventsourcing.dcb.domain import Selector, Slice
+from eventsourcing.domain import event
 from student_events.events import StudentID, StudentMaxCoursesUpdated, StudentRegistered
 
 

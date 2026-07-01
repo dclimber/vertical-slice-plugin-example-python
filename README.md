@@ -3,10 +3,9 @@
 `vertical_slices` is a learning and brainstorming repo about structuring a
 Python event-sourced DCB application as small, composable vertical slices.
 
-The example domain is course enrolment. The code started from the
-`dcb_enrolment_with_vertical_slices` example shape and explores how the same
-ideas can be split into explicit event contracts, command slices, read-model
-slices, use-case composition, and BDD flow specifications.
+The example domain is course enrolment. The repo explores how a compact DCB
+application can be split into explicit event contracts, command slices,
+read-model slices, use-case composition, and BDD flow specifications.
 
 ## What This Explores
 
@@ -16,7 +15,7 @@ slices, use-case composition, and BDD flow specifications.
 - Automation slices as a future `event -> read model -> command -> event`
   extension point.
 - BDD features as flow/use-case specs rather than slice packages.
-- A compatibility facade for the old `EnrolmentWithVerticalSlices` public API.
+- A small application API for running the enrolment workflow directly.
 
 This is intentionally an exploration, not a production template. The value is in
 the package boundaries, tests, and tradeoffs.
@@ -31,14 +30,14 @@ vertical_slices/state-changes        command -> event slices
 vertical_slices/state-views          event -> query/read-model slices
 vertical_slices/automations          placeholder for future automation packages
 
-src/course_app                       application wrapper and explicit composition root
+src/course_app                       application API and explicit composition root
 docs/features                        Gherkin flow specs
-tests                                contract, compatibility, BDD, and composition tests
+tests                                contract, architecture, BDD, and composition tests
 ```
 
-The transitional `student_slice`, `course_slice`, and `enrolment_slice`
-packages remain as compatibility import surfaces. They re-export canonical
-classes from the corrected layout.
+The `student_slice`, `course_slice`, and `enrolment_slice` packages are
+domain-area import shims. They re-export canonical classes from the slice
+packages so the domain can still be browsed at a higher level.
 
 ## Composition
 

@@ -1,7 +1,10 @@
 from __future__ import annotations
 
+from typing import NewType
+
 from eventsourcing.dcb.msgpack import Decision
-from examples.dcb_enrolment.interface import StudentID
+
+StudentID = NewType("StudentID", str)
 
 __all__ = [
     "StudentID",

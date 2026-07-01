@@ -4,7 +4,7 @@ from uuid import uuid4
 
 from courses_events.events import CourseRegistered
 from eventsourcing.dcb.domain import Selector, Slice
-from examples.dcb_enrolment.interface import CourseID
+from courses_events.events import CourseID
 
 
 class RegisterCourse(Slice[CourseRegistered]):

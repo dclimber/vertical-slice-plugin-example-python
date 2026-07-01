@@ -3,7 +3,7 @@ from __future__ import annotations
 from courses_events.events import CoursePlacesUpdated, CourseRegistered
 from eventsourcing.dcb.domain import Selector, Slice
 from eventsourcing.domain import event
-from examples.dcb_enrolment.interface import CourseID
+from courses_events.events import CourseID
 
 
 class UpdateCoursePlaces(Slice[CoursePlacesUpdated]):

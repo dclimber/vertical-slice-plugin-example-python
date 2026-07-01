@@ -5,13 +5,8 @@ import importlib
 from pathlib import Path
 
 from course_slice import events as course_events
-from course_slice import slices as course_slices
 from enrolment_slice import events as enrolment_events
-from enrolment_slice import queries as enrolment_queries
-from enrolment_slice import slices as enrolment_slices
-from examples.dcb_enrolment_with_vertical_slices import application as compatibility_app
 from student_slice import events as student_events
-from student_slice import slices as student_slices
 
 ROOT = Path(__file__).resolve().parents[2]
 
@@ -67,29 +62,6 @@ EXPECTED_CLASS_LOCATIONS = {
     "CourseNames": Path("vertical_slices/state-views/course_names/course_names/view.py"),
     "Student": Path("vertical_slices/state-views/student_summary/student_summary/view.py"),
     "Course": Path("vertical_slices/state-views/course_summary/course_summary/view.py"),
-    "EnrolmentWithVerticalSlices": Path("dcb_enrolment_with_vertical_slices/application.py"),
-}
-
-CANONICAL_EXPORTS = {
-    "StudentRegistered": student_events.StudentRegistered,
-    "StudentNameUpdated": student_events.StudentNameUpdated,
-    "StudentMaxCoursesUpdated": student_events.StudentMaxCoursesUpdated,
-    "CourseRegistered": course_events.CourseRegistered,
-    "CourseNameUpdated": course_events.CourseNameUpdated,
-    "CoursePlacesUpdated": course_events.CoursePlacesUpdated,
-    "StudentJoinedCourse": enrolment_events.StudentJoinedCourse,
-    "StudentLeftCourse": enrolment_events.StudentLeftCourse,
-    "RegisterStudent": student_slices.RegisterStudent,
-    "UpdateStudentName": student_slices.UpdateStudentName,
-    "UpdateMaxCourses": student_slices.UpdateMaxCourses,
-    "RegisterCourse": course_slices.RegisterCourse,
-    "UpdateCourseName": course_slices.UpdateCourseName,
-    "StudentJoinsCourse": enrolment_slices.StudentJoinsCourse,
-    "StudentLeavesCourse": enrolment_slices.StudentLeavesCourse,
-    "StudentNames": enrolment_queries.StudentNames,
-    "CourseNames": enrolment_queries.CourseNames,
-    "Student": enrolment_queries.Student,
-    "Course": enrolment_queries.Course,
 }
 
 
@@ -114,11 +86,6 @@ def test_durable_classes_are_defined_once_in_their_canonical_modules() -> None:
     } == {
         name: [path] for name, path in EXPECTED_CLASS_LOCATIONS.items()
     }
-
-
-def test_compatibility_module_re_exports_canonical_class_objects() -> None:
-    for export_name, canonical_object in CANONICAL_EXPORTS.items():
-        assert getattr(compatibility_app, export_name) is canonical_object
 
 
 def test_event_compatibility_modules_re_export_canonical_event_objects() -> None:
