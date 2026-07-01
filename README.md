@@ -1,6 +1,6 @@
-# vertical_slices
+# vertical-slice-plugin-example
 
-`vertical_slices` is a learning and brainstorming repo about structuring a
+`vertical-slice-plugin-example` is a learning and brainstorming repo about structuring a
 Python event-sourced DCB application as small, composable vertical slices.
 
 The example domain is course enrolment. The repo explores how a compact DCB
@@ -26,8 +26,8 @@ the package boundaries, tests, and tradeoffs.
 vertical_slices/student_events       durable student event contracts
 vertical_slices/courses_events       durable course event contracts
 vertical_slices/enrollment_events    durable enrollment event contracts
-vertical_slices/state-changes        command -> event slices
-vertical_slices/state-views          event -> query/read-model slices
+vertical_slices/state_changes        command -> event slices
+vertical_slices/state_views          event -> query/read-model slices
 vertical_slices/automations          placeholder for future automation packages
 
 src/course_app                       application API and explicit composition root
