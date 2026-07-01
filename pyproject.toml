@@ -1,0 +1,98 @@
+[project]
+name = "vertical-slice-plugin-example"
+version = "0.1.0"
+description = "A learning repo exploring Python event-sourced DCB app structure with vertical slices."
+readme = "README.md"
+requires-python = ">=3.13"
+license = "BSD-3-Clause"
+authors = [
+    { name = "dclimber" },
+]
+dependencies = [
+    "eventsourcing>=9.5.4",
+    "msgspec>=0.21.1",
+    "pytest-bdd>=8.1.0",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+    "pytest-bdd>=8.1.0",
+    "pytest-cov>=7.1.0",
+    "ruff>=0.15.20",
+]
+
+[tool.pytest.ini_options]
+pythonpath = [
+    ".",
+    "src",
+    "vertical_slices/student_events",
+    "vertical_slices/courses_events",
+    "vertical_slices/enrollment_events",
+    "vertical_slices/state-changes/register_student",
+    "vertical_slices/state-changes/update_student_name",
+    "vertical_slices/state-changes/update_student_max_courses",
+    "vertical_slices/state-changes/register_course",
+    "vertical_slices/state-changes/update_course_name",
+    "vertical_slices/state-changes/update_course_places",
+    "vertical_slices/state-changes/join_course",
+    "vertical_slices/state-changes/leave_course",
+    "vertical_slices/state-views/student_ids_for_course",
+    "vertical_slices/state-views/student_names",
+    "vertical_slices/state-views/course_ids_for_student",
+    "vertical_slices/state-views/course_names",
+    "vertical_slices/state-views/student_summary",
+    "vertical_slices/state-views/course_summary",
+    "vertical_slices/student_slice",
+    "vertical_slices/course_slice",
+    "vertical_slices/enrolment_slice",
+]
+testpaths = ["tests"]
+
+[tool.ruff]
+src = [
+    ".",
+    "src",
+    "vertical_slices/student_events",
+    "vertical_slices/courses_events",
+    "vertical_slices/enrollment_events",
+    "vertical_slices/state-changes/register_student",
+    "vertical_slices/state-changes/update_student_name",
+    "vertical_slices/state-changes/update_student_max_courses",
+    "vertical_slices/state-changes/register_course",
+    "vertical_slices/state-changes/update_course_name",
+    "vertical_slices/state-changes/update_course_places",
+    "vertical_slices/state-changes/join_course",
+    "vertical_slices/state-changes/leave_course",
+    "vertical_slices/state-views/student_ids_for_course",
+    "vertical_slices/state-views/student_names",
+    "vertical_slices/state-views/course_ids_for_student",
+    "vertical_slices/state-views/course_names",
+    "vertical_slices/state-views/student_summary",
+    "vertical_slices/state-views/course_summary",
+    "vertical_slices/student_slice",
+    "vertical_slices/course_slice",
+    "vertical_slices/enrolment_slice",
+]
+
+[tool.uv.sources]
+student-events = { path = "vertical_slices/student_events", editable = true }
+courses-events = { path = "vertical_slices/courses_events", editable = true }
+enrollment-events = { path = "vertical_slices/enrollment_events", editable = true }
+register-student = { path = "vertical_slices/state-changes/register_student", editable = true }
+update-student-name = { path = "vertical_slices/state-changes/update_student_name", editable = true }
+update-student-max-courses = { path = "vertical_slices/state-changes/update_student_max_courses", editable = true }
+register-course = { path = "vertical_slices/state-changes/register_course", editable = true }
+update-course-name = { path = "vertical_slices/state-changes/update_course_name", editable = true }
+update-course-places = { path = "vertical_slices/state-changes/update_course_places", editable = true }
+join-course = { path = "vertical_slices/state-changes/join_course", editable = true }
+leave-course = { path = "vertical_slices/state-changes/leave_course", editable = true }
+student-ids-for-course = { path = "vertical_slices/state-views/student_ids_for_course", editable = true }
+student-names = { path = "vertical_slices/state-views/student_names", editable = true }
+course-ids-for-student = { path = "vertical_slices/state-views/course_ids_for_student", editable = true }
+course-names = { path = "vertical_slices/state-views/course_names", editable = true }
+student-summary = { path = "vertical_slices/state-views/student_summary", editable = true }
+course-summary = { path = "vertical_slices/state-views/course_summary", editable = true }
+student-slice = { path = "vertical_slices/student_slice", editable = true }
+course-slice = { path = "vertical_slices/course_slice", editable = true }
+enrolment-slice = { path = "vertical_slices/enrolment_slice", editable = true }

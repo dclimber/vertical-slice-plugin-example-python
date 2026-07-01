@@ -65,6 +65,7 @@ eventsourcing/tests/djangoproject/db.sqlite3
 
 # Virtualenv
 venv
+.venv
 
 #Eclipse IDE
 .project
@@ -74,4 +75,3 @@ venv
 
 #VS Code IDE
 .vscode
-
