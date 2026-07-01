@@ -3,6 +3,10 @@ name = "course-summary"
 version = "0.1.0"
 requires-python = ">=3.13"
 dependencies = [
+    "course-kernel",
     "eventsourcing>=9.5.4",
     "pytest-bdd>=8.1.0",
 ]
+
+[tool.uv.sources]
+course-kernel = { path = "../../../kernel", editable = true }

@@ -1,18 +1,13 @@
 from __future__ import annotations
 
-from typing import Protocol
-
+from course_kernel import Registry
 from register_student.slice import RegisterStudent
-
-
-class RegisterStudentRegistry(Protocol):
-    def command(self, name: str, slice_factory: type) -> None: ...
 
 
 class RegisterStudentPlugin:
     name = "state-change.register-student"
 
-    def register(self, registry: RegisterStudentRegistry) -> None:
+    def register(self, registry: Registry) -> None:
         registry.command("student.register", RegisterStudent)
 
 

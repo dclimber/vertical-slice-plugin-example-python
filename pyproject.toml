@@ -9,6 +9,7 @@ authors = [
     { name = "dclimber" },
 ]
 dependencies = [
+    "course-kernel",
     "eventsourcing>=9.5.4",
     "msgspec>=0.21.1",
     "pytest-bdd>=8.1.0",
@@ -25,6 +26,7 @@ dev = [
 [tool.pytest.ini_options]
 pythonpath = [
     ".",
+    "kernel",
     "src",
     "vertical_slices/student_events",
     "vertical_slices/courses_events",
@@ -52,6 +54,7 @@ testpaths = [
 [tool.ruff]
 src = [
     ".",
+    "kernel",
     "src",
     "vertical_slices/student_events",
     "vertical_slices/courses_events",
@@ -73,6 +76,7 @@ src = [
 ]
 
 [tool.uv.sources]
+course-kernel = { path = "kernel", editable = true }
 student-events = { path = "vertical_slices/student_events", editable = true }
 courses-events = { path = "vertical_slices/courses_events", editable = true }
 enrollment-events = { path = "vertical_slices/enrollment_events", editable = true }

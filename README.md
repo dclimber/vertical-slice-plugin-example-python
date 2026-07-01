@@ -23,6 +23,7 @@ the package boundaries, tests, and tradeoffs.
 ## Layout
 
 ```text
+kernel/course_kernel                 shared composition contracts
 vertical_slices/student_events       durable student event contracts
 vertical_slices/courses_events       durable course event contracts
 vertical_slices/enrollment_events    durable enrollment event contracts
@@ -37,8 +38,9 @@ tests                                contract, architecture, BDD, and compositio
 
 ## Composition
 
-`src/course_app/use_cases.py` registers canonical events and composes use cases
-from the smaller slice packages.
+`kernel/course_kernel` defines the registry and composition contracts shared by
+the app and the slice packages. `src/course_app/use_cases.py` registers
+canonical events and composes use cases from the smaller slice packages.
 
 Examples:
 

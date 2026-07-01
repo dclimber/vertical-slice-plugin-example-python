@@ -4,7 +4,7 @@ from dataclasses import dataclass
 
 import pytest
 
-from course_app.kernel.composition import Composition
+from course_kernel.composition import Composition
 
 
 def test_validate_fails_when_use_case_references_missing_command() -> None:

@@ -126,6 +126,7 @@ In Python, the practical move is boring and effective:
 
 This repo does that:
 
+- composition contracts live in `kernel/course_kernel`
 - event contracts live in `vertical_slices/*_events`
 - state changes live in `vertical_slices/state_changes/*`
 - state views live in `vertical_slices/state_views/*`

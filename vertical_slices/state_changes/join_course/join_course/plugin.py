@@ -1,18 +1,13 @@
 from __future__ import annotations
 
-from typing import Protocol
-
+from course_kernel import Registry
 from join_course.slice import StudentJoinsCourse
-
-
-class JoinCourseRegistry(Protocol):
-    def command(self, name: str, slice_factory: type) -> None: ...
 
 
 class JoinCoursePlugin:
     name = "state-change.join-course"
 
-    def register(self, registry: JoinCourseRegistry) -> None:
+    def register(self, registry: Registry) -> None:
         registry.command("enrollment.join_course", StudentJoinsCourse)
         registry.command("enrolment.join_course", StudentJoinsCourse)
 

@@ -1,18 +1,13 @@
 from __future__ import annotations
 
-from typing import Protocol
-
+from course_kernel import Registry
 from leave_course.slice import StudentLeavesCourse
-
-
-class LeaveCourseRegistry(Protocol):
-    def command(self, name: str, slice_factory: type) -> None: ...
 
 
 class LeaveCoursePlugin:
     name = "state-change.leave-course"
 
-    def register(self, registry: LeaveCourseRegistry) -> None:
+    def register(self, registry: Registry) -> None:
         registry.command("enrollment.leave_course", StudentLeavesCourse)
         registry.command("enrolment.leave_course", StudentLeavesCourse)
 

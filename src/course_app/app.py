@@ -4,13 +4,12 @@ from collections.abc import Mapping
 
 from courses_events.events import CourseID
 from course_summary.view import Course
+from course_kernel.composition import Composition
 from eventsourcing.dcb.application import DCBApplication
 from eventsourcing.dcb.msgpack import MessagePackMapper
 from eventsourcing.utils import get_topic
 from student_events.events import StudentID
 from student_summary.view import Student
-
-from course_app.kernel.composition import Composition
 
 
 class CourseApp(DCBApplication):

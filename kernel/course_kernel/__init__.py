@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from course_app.kernel.composition import (
+from course_kernel.composition import (
     AutomationPlugin,
     Composition,
     Registry,

@@ -9,6 +9,7 @@ around explicit vertical slice package boundaries.
 vertical_slices/student_events      shared student event contracts
 vertical_slices/courses_events      shared course event contracts
 vertical_slices/enrollment_events   shared enrollment event contracts
+kernel/course_kernel                shared registry and composition contracts
 vertical_slices/state_changes       command -> event slices
 vertical_slices/state_views         event -> query/read-model slices
 vertical_slices/automations         future automation packages
@@ -18,9 +19,11 @@ tests/bdd                           executable flow/use-case specifications
 
 ## Composition
 
-`src/course_app/use_cases.py` is the composition root. It registers durable
-events from the shared contract packages, then wires command and query plugins
-into use cases.
+`kernel/course_kernel` owns the shared registry and composition contracts.
+State-change and state-view packages depend on this kernel to register their
+plugins. `src/course_app/use_cases.py` is the composition root. It registers
+durable events from the shared event packages, then wires command and query
+plugins into use cases.
 
 Examples:
 
@@ -32,8 +35,11 @@ Examples:
 
 ## Responsibilities
 
-Event packages define shared contracts. They are stable durable event types that
-other slices can import.
+The kernel package defines composition contracts. It does not import the app or
+any concrete vertical slice.
+
+Event packages define shared domain contracts. They are stable durable event
+types that other slices can import.
 
 State-change packages are command -> event slices. Each one owns a decision
 boundary and emits durable events.

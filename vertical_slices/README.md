@@ -9,5 +9,9 @@ Its purpose is to make the DCB application structure explicit:
 - state-view packages implement `event -> query/read model` slices
 - automation packages are reserved for future `event -> read model -> command -> event` flows
 
+State-change and state-view packages depend on `course-kernel` for registration
+contracts. The kernel is outside both `src/` and `vertical_slices/`, so the
+application and slices share contracts without depending on each other.
+
 The production application composes these packages from `src/course_app/`.
 Tests treat this directory as the primary architectural surface of the repo.
